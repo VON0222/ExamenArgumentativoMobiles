@@ -1,14 +1,14 @@
 package com.example.kotlin.newapp.data.repository
 
-import com.example.kotlin.newapp.data.MovieAPIService
-import com.example.kotlin.newapp.data.model.MovieObject
-import retrofit2.http.Query
+import com.example.kotlin.newapp.data.network.MovieAPIService
+import com.example.kotlin.newapp.data.network.NetworkModuleDI
+import com.example.kotlin.newapp.data.network.model.MovieObject
 
 class MovieRepository() {
     private lateinit var api: MovieAPIService
 
     suspend fun getMovieList(language:String, page:Int): MovieObject?{
-        //todo: Inicializar variable api
+        api = NetworkModuleDI()
         return try{
             api.getMovieList(language, page)
         }catch (e:java.lang.Exception){

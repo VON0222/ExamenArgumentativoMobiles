@@ -2,10 +2,17 @@ package com.example.kotlin.newapp.framework.views
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.newapp.data.movie.BaseMovie
+import com.example.kotlin.newapp.data.network.model.MovieObject
+import com.example.kotlin.newapp.data.repository.MovieRepository
 import com.example.kotlin.newapp.framework.adapters.MovieAdapter
 import com.example.kotlin.newapp.databinding.ActivityMainBinding
+import com.example.kotlin.newapp.utils.Constants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity: Activity() {
 
@@ -17,7 +24,7 @@ class MainActivity: Activity() {
         super.onCreate(savedInstanceState)
 
         initializeBinding()
-        setUpRecyclerView(testData())
+        getMovieList()
     }
 
     private fun initializeBinding() {
@@ -32,27 +39,19 @@ class MainActivity: Activity() {
             LinearLayoutManager.VERTICAL,
             false)
         binding.RVMovie.layoutManager = linearLayoutManager
-        adapter.CommonsAdapter(dataForList)
+        adapter.MovieAdapter(dataForList)
         binding.RVMovie.adapter = adapter
     }
 
-    private fun testData():ArrayList<BaseMovie>{
-        var result = ArrayList<BaseMovie>()
-
-        result.add(BaseMovie(false,
-            "/mRGmNnh6pBAGGp6fMBMwI8iTBUO.jpg", listOf(27, 9648, 53),
-            968051,
-            "en",
-            "The Nun II",
-            "In 1956 France, a priest is violently murdered, and Sister Irene begins to investigate. She once again comes face-to-face with a powerful evil.",
-            4160.929,
-            "/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
-            "2023-09-06",
-            "The Nun II",
-            false,
-            7.5,
-            776))
-
-        return result
+    private fun getMovieList(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val movieRepository = MovieRepository()
+            val result: MovieObject? = movieRepository.getMovieList(Constants.language, 1)
+            Log.d("Salida", result?.info.toString())
+            CoroutineScope(Dispatchers.Main).launch {
+                setUpRecyclerView(result?.info!!)
+            }
+        }
     }
+
 }

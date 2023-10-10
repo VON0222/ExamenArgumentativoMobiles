@@ -1,9 +1,7 @@
-package com.example.kotlin.newapp.data
+package com.example.kotlin.newapp.data.network
 
-import com.example.kotlin.newapp.data.model.MovieObject
 import com.example.kotlin.newapp.utils.Constants
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
