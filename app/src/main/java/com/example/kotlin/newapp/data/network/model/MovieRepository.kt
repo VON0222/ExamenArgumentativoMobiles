@@ -1,8 +1,4 @@
-package com.example.kotlin.newapp.data.repository
-
-import com.example.kotlin.newapp.data.network.MovieAPIService
-import com.example.kotlin.newapp.data.network.NetworkModuleDI
-import com.example.kotlin.newapp.data.network.model.MovieObject
+package com.example.kotlin.newapp.data.network.model
 
 class MovieRepository() {
     private lateinit var api: MovieAPIService

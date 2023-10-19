@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.mypokedexapp.MovieViewHolder
-import com.example.kotlin.newapp.data.movie.BaseMovie
+import com.example.kotlin.newapp.framework.adapters.viewholders.MovieViewHolder
+import com.example.kotlin.newapp.data.network.model.BaseMovie
 import com.example.kotlin.newapp.databinding.ItemMovieBinding
 
 

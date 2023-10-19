@@ -1,4 +1,4 @@
-package com.example.kotlin.newapp.data.movie
+package com.example.kotlin.newapp.data.network.model
 
 data class BaseMovie(
     val adult: Boolean,

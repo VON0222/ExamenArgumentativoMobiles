@@ -4,9 +4,9 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlin.newapp.data.movie.BaseMovie
+import com.example.kotlin.newapp.data.network.model.BaseMovie
 import com.example.kotlin.newapp.data.network.model.MovieObject
-import com.example.kotlin.newapp.data.repository.MovieRepository
+import com.example.kotlin.newapp.data.network.model.MovieRepository
 import com.example.kotlin.newapp.framework.adapters.MovieAdapter
 import com.example.kotlin.newapp.databinding.ActivityMainBinding
 import com.example.kotlin.newapp.utils.Constants
