@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: BaseMovie, context:Context){
         binding.TVName.text = item.title
-        Log.d("poster",item.poster_path)
+        binding.TVSinapsis.text = item.overview
         getMovieInfo(item.poster_path,binding.IVPhoto,context)
     }
 
