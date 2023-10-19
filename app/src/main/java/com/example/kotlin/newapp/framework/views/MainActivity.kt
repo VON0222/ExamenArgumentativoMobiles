@@ -1,30 +1,26 @@
 package com.example.kotlin.newapp.framework.views
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.newapp.data.network.model.BaseMovie
-import com.example.kotlin.newapp.data.network.model.MovieObject
-import com.example.kotlin.newapp.data.network.model.MovieRepository
 import com.example.kotlin.newapp.framework.adapters.MovieAdapter
 import com.example.kotlin.newapp.databinding.ActivityMainBinding
-import com.example.kotlin.newapp.utils.Constants
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.kotlin.newapp.framework.viewmodel.MainViewModel
 
-class MainActivity: Activity() {
+class MainActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val adapter : MovieAdapter = MovieAdapter()
-    private lateinit var data:ArrayList<BaseMovie>
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initializeBinding()
-        getMovieList()
+        initializeObservers()
+        viewModel.getMovieList()
     }
 
     private fun initializeBinding() {
@@ -43,14 +39,9 @@ class MainActivity: Activity() {
         binding.RVMovie.adapter = adapter
     }
 
-    private fun getMovieList(){
-        CoroutineScope(Dispatchers.IO).launch {
-            val movieRepository = MovieRepository()
-            val result: MovieObject? = movieRepository.getMovieList(Constants.language, 1)
-            Log.d("Salida", result?.info.toString())
-            CoroutineScope(Dispatchers.Main).launch {
-                setUpRecyclerView(result?.info!!)
-            }
+    private fun initializeObservers(){
+        viewModel.movieObjectLiveData.observe(this){ movieObject ->
+            setUpRecyclerView(movieObject.info)
         }
     }
 
