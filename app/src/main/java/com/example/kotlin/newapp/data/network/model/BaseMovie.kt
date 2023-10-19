@@ -1,5 +1,10 @@
 package com.example.kotlin.newapp.data.network.model
 
+/**
+ * Objeto que contiene una pelicula.
+ *
+ * Este objeto contiene una pelicula junto a sus atributos obtenidos de la API de TMDB.
+ */
 data class BaseMovie(
     val adult: Boolean,
     val backdrop_path: String,
