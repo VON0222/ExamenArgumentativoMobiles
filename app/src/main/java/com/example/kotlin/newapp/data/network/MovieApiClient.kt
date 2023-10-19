@@ -1,6 +1,8 @@
-package com.example.kotlin.newapp.data.network.model
+package com.example.kotlin.newapp.data.network
 
-class MovieRepository() {
+import com.example.kotlin.newapp.data.network.model.MovieObject
+
+class MovieApiClient {
     private lateinit var api: MovieAPIService
 
     suspend fun getMovieList(language:String, page:Int): MovieObject?{

@@ -1,4 +1,4 @@
-package com.example.kotlin.newapp.data.network.model
+package com.example.kotlin.newapp.data.network
 
 import com.example.kotlin.newapp.utils.Constants
 import okhttp3.OkHttpClient
