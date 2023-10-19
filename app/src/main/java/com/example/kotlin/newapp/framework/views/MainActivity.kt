@@ -39,7 +39,7 @@ class MainActivity: Activity() {
             LinearLayoutManager.VERTICAL,
             false)
         binding.RVMovie.layoutManager = linearLayoutManager
-        adapter.MovieAdapter(dataForList)
+        adapter.MovieAdapter(dataForList,this)
         binding.RVMovie.adapter = adapter
     }
 
