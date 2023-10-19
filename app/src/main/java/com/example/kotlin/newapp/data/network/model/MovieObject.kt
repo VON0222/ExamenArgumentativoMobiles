@@ -1,6 +1,5 @@
 package com.example.kotlin.newapp.data.network.model
 
-import com.example.kotlin.newapp.data.movie.BaseMovie
 import com.google.gson.annotations.SerializedName
 
 data class MovieObject (
